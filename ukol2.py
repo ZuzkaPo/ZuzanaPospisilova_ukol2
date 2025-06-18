@@ -14,6 +14,8 @@ json_resp = response.json()
 data = {"kodCiselniku": "PravniForma", "zdrojCiselniku": "res"}
 response_ciselniky = requests.post('https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ciselniky-nazevniky/vyhledat', headers=headers, json=data)
 json_ciselniky = response_ciselniky.json()
+
+#Bonusova cast
 #vytvorim si vlastni ciselnik kde klic je ciselny kod a hodnota je slovni nazev 
 muj_ciselnik = {}
 for i in json_ciselniky['ciselniky'][0]['polozkyCiselniku']:
@@ -23,4 +25,3 @@ for i in json_ciselniky['ciselniky'][0]['polozkyCiselniku']:
 print(f"  Pocet nalezenych subjektu: {json_resp['pocetCelkem']}")
 for i in json_resp['ekonomickeSubjekty']:
     print(f"{i['obchodniJmeno']}, {i['ico']}, {muj_ciselnik[i['pravniForma']]}" )
-
